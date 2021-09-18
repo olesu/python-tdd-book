@@ -16,7 +16,7 @@ clean:
 	rm -rf virtualenv
 
 .PHONY: test
-test:
+test: virtualenv
 	source ./virtualenv/bin/activate && python functional_tests.py
 
 virtualenv:
@@ -28,3 +28,6 @@ $(FIREFOX):
 
 $(GECKODRIVER):
 	brew install geckodriver
+
+superlists: virtualenv
+	source ./virtualenv/bin/activate && django-admin.py startproject superlists .
