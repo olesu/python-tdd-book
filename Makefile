@@ -15,6 +15,10 @@ tools: $(TOOLS)
 clean:
 	rm -rf virtualenv
 
+.PHONY: test
+test:
+	source ./virtualenv/bin/activate && python functional_tests.py
+
 virtualenv:
 	$(PY) -mvenv $@
 	source ./virtualenv/bin/activate && pip install "django<1.12" "selenium<4"
