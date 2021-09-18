@@ -1,6 +1,6 @@
 .PHONY: all tools
 
-PYTHON = /usr/local/bin/python3
+PY = /usr/local/bin/python3
 
 FIREFOX = /Applications/Firefox.app
 GECKODRIVER = /usr/local/bin/geckodriver
@@ -12,7 +12,7 @@ all: virtualenv tools
 tools: $(TOOLS)
 
 virtualenv:
-	$(PYTHON) -mvenv $@
+	$(PY) -mvenv $@
 
 $(FIREFOX):
 	brew install --cask firefox
