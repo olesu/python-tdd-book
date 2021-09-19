@@ -17,6 +17,7 @@ clean:
 
 .PHONY: test
 test: virtualenv
+	source ./virtualenv/bin/activate && python manage.py test
 	source ./virtualenv/bin/activate && python functional_tests.py
 
 .PHONY: run
@@ -35,3 +36,6 @@ $(GECKODRIVER):
 
 superlists: virtualenv
 	source ./virtualenv/bin/activate && django-admin.py startproject superlists .
+
+lists: superlists
+	source ./virtualenv/bin/activate && django-admin.py startapp lists
