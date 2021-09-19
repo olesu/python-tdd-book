@@ -1,4 +1,7 @@
 PY = /usr/local/bin/python3
+PYTHON = ./virtualenv/bin/python
+PIP = ./virtualenv/bin/pip
+DJANGO_ADMIN = ./virtualenv/bin/django_admin.py
 
 FIREFOX = /Applications/Firefox.app
 GECKODRIVER = /usr/local/bin/geckodriver
@@ -17,16 +20,16 @@ clean:
 
 .PHONY: test
 test: virtualenv
-	source ./virtualenv/bin/activate && python manage.py test
-	source ./virtualenv/bin/activate && python functional_tests.py
+	$(PYTHON) manage.py test
+	$(PYTHON) functional_tests.py
 
 .PHONY: run
 run:
-	source ./virtualenv/bin/activate && python manage.py runserver
+	$(PYTHON) manage.py runserver
 
 virtualenv:
 	$(PY) -mvenv $@
-	source ./virtualenv/bin/activate && pip install "django<1.12" "selenium<4"
+	$(PIP) install "django<1.12" "selenium<4"
 
 $(FIREFOX):
 	brew install --cask firefox
@@ -35,7 +38,7 @@ $(GECKODRIVER):
 	brew install geckodriver
 
 superlists: virtualenv
-	source ./virtualenv/bin/activate && django-admin.py startproject superlists .
+	$(DJANGO_ADMIN) startproject superlists .
 
 lists: superlists
-	source ./virtualenv/bin/activate && django-admin.py startapp lists
+	$(DJANGO_ADMIN) startapp lists
