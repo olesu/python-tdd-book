@@ -19,10 +19,16 @@ tools: $(TOOLS)
 clean:
 	rm -rf ./$(VENV)
 
-.PHONY: test
-test: $(VENV)
+.PHONY: unit-test
+unit-test:
 	$(PYTHON) manage.py test
+
+.PHONY: functional-test
+functional-test:
 	$(PYTHON) functional_tests.py
+
+.PHONY: test
+test: $(VENV) unit-test functional-test
 
 .PHONY: run
 run:
