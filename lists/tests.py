@@ -1,6 +1,3 @@
-from django.http import response
-from django.urls import resolve
-
 from django.test import TestCase
 
 
