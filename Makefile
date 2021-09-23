@@ -34,9 +34,14 @@ test: $(VENV) unit-test functional-test
 run:
 	$(PYTHON) manage.py runserver
 
+.PHONY: watch
+watch: $(VENV)
+	source ./$(VENV)/bin/activate; ptw --runner "make unit-test" --onfail "terminal-notifier -message 'tests failed'"
+
 $(VENV):
 	$(PY) -mvenv $@
 	$(PIP) install "django<1.12" "selenium<4"
+	$(PIP) install "pytest-watch"
 
 $(FIREFOX):
 	brew install --cask firefox
