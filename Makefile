@@ -18,6 +18,7 @@ tools: $(TOOLS)
 .PHONY: clean
 clean:
 	rm -rf ./$(VENV)
+	rm db.sqlite3
 
 .PHONY: unit-test
 unit-test:
@@ -39,8 +40,12 @@ watch: $(VENV)
 	source ./$(VENV)/bin/activate; ptw --runner "make unit-test" --onfail "terminal-notifier -message 'tests failed'"
 
 .PHONY: migrations
-migrations:
+migrations: $(VENV)
 	$(PYTHON) manage.py makemigrations
+
+.PHONY: migrate
+migrate: $(VENV)
+	$(PYTHON) manage.py migrate
 
 $(VENV):
 	$(PY) -mvenv $@
