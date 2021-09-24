@@ -38,6 +38,10 @@ run:
 watch: $(VENV)
 	source ./$(VENV)/bin/activate; ptw --runner "make unit-test" --onfail "terminal-notifier -message 'tests failed'"
 
+.PHONY: migrations
+migrations:
+	$(PYTHON) manage.py makemigrations
+
 $(VENV):
 	$(PY) -mvenv $@
 	$(PIP) install "django<1.12" "selenium<4"
