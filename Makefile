@@ -22,11 +22,11 @@ clean:
 
 .PHONY: unit-test
 unit-test:
-	$(PYTHON) manage.py test
+	$(PYTHON) manage.py test lists
 
 .PHONY: functional-test
 functional-test:
-	$(PYTHON) functional_tests.py
+	$(PYTHON) manage.py test functional_tests
 
 .PHONY: test
 test: $(VENV) unit-test functional-test
