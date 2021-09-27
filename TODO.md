@@ -1,6 +1,6 @@
 # TODO
 
-- Refactor away some duplication in urls.py
+- ~~Refactor away some duplication in urls.py~~
 - ~~Add URLs for adding a new item to an existing list via POST~~
 - ~~Add unique URLs for each list~~
 - ~~Adjust model so that items are associated with different lists~~
