@@ -47,6 +47,10 @@ migrations: $(VENV)
 migrate: $(VENV)
 	$(PYTHON) manage.py migrate
 
+.PHONY: collectstatic
+collectstatic: $(VENV)
+	$(PYTHON) manage.py $@
+
 $(VENV):
 	$(PY) -mvenv $@
 	$(PIP) install "django<1.12" "selenium<4"
