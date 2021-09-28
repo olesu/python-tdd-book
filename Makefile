@@ -21,15 +21,15 @@ clean:
 	rm db.sqlite3
 
 .PHONY: unit-test
-unit-test:
+unit-test: $(VENV)
 	$(PYTHON) manage.py test lists
 
 .PHONY: functional-test
-functional-test:
+functional-test: $(VENV)
 	$(PYTHON) manage.py test functional_tests
 
 .PHONY: test
-test: $(VENV) unit-test functional-test
+test: unit-test functional-test
 
 .PHONY: run
 run:
@@ -51,10 +51,12 @@ migrate: $(VENV)
 collectstatic: $(VENV)
 	$(PYTHON) manage.py $@
 
-$(VENV):
+$(VENV): requirements.txt
 	$(PY) -mvenv $@
+	$(PIP) install --upgrade -r requirements.txt
 	$(PIP) install "django<1.12" "selenium<4"
 	$(PIP) install "pytest-watch"
+	touch $(VENV)
 
 $(FIREFOX):
 	brew install --cask firefox
