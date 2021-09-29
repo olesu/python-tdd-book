@@ -19,6 +19,8 @@ tools: $(TOOLS)
 clean:
 	rm -rf ./$(VENV)
 	rm db.sqlite3
+	find . -type f -name '*.pyc' -delete
+	find . -type d -name __pycache__ -delete
 
 .PHONY: unit-test
 unit-test: $(VENV)
@@ -51,11 +53,10 @@ migrate: $(VENV)
 collectstatic: $(VENV)
 	$(PYTHON) manage.py $@
 
-$(VENV): requirements.txt
+$(VENV): requirements.txt requirements-dev.txt
 	$(PY) -mvenv $@
 	$(PIP) install --upgrade -r requirements.txt
-	$(PIP) install "django<1.12" "selenium<4"
-	$(PIP) install "pytest-watch"
+	$(PIP) install --upgrade -r requirements-dev.txt
 	touch $(VENV)
 
 $(FIREFOX):
