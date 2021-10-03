@@ -9,6 +9,12 @@ GECKODRIVER = /usr/local/bin/geckodriver
 
 TOOLS = $(FIREFOX) $(GECKODRIVER)
 
+FT_OPTS =
+FAIL_FAST ?= 0
+ifeq ($(FAIL_FAST), 1)
+	FT_OPTS += --failfast
+endif
+
 .PHONY: all
 all: $(VENV) tools
 
@@ -28,7 +34,7 @@ unit-test: $(VENV)
 
 .PHONY: functional-test
 functional-test: $(VENV)
-	$(PYTHON) manage.py test functional_tests
+	$(PYTHON) manage.py test functional_tests $(FT_OPTS)
 
 .PHONY: test
 test: unit-test functional-test
