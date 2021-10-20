@@ -24,7 +24,7 @@ tools: $(TOOLS)
 .PHONY: clean
 clean:
 	rm -rf ./$(VENV)
-	rm db.sqlite3
+	rm -f db.sqlite3
 	find . -type f -name '*.pyc' -delete
 	find . -type d -name __pycache__ -delete
 
@@ -40,7 +40,7 @@ functional-test: $(VENV)
 test: unit-test functional-test
 
 .PHONY: run
-run:
+run: $(VENV)
 	$(PYTHON) manage.py runserver
 
 .PHONY: watch
