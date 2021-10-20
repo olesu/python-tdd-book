@@ -1,4 +1,5 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from unittest import skip
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
@@ -116,6 +117,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2, 512, delta=10)
 
+    @skip
     def test_cannot_add_empty_list_items(self):
         # Edith goes to the home page and accidentaly tries to submit
         # an empty list item. She hits Enter on the empty input box
