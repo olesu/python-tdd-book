@@ -8,6 +8,7 @@ FIREFOX = /Applications/Firefox.app
 GECKODRIVER = /usr/local/bin/geckodriver
 
 TOOLS = $(FIREFOX) $(GECKODRIVER)
+TESTS ?= lists
 
 FT_OPTS =
 FAIL_FAST ?= 0
@@ -30,7 +31,7 @@ clean:
 
 .PHONY: unit-test
 unit-test: $(VENV)
-	$(PYTHON) manage.py test lists
+	$(PYTHON) manage.py test $(TESTS)
 
 .PHONY: functional-test
 functional-test: $(VENV)
