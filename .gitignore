@@ -5,3 +5,4 @@ geckodriver.log
 *.pyc
 /static
 .env
+*.code-workspace
