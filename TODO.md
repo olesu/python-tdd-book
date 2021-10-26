@@ -1,5 +1,6 @@
 # TODO
 
+- Remove hardcoded URLs from views.py
 - ~~Refactor away some duplication in urls.py~~
 - ~~Add URLs for adding a new item to an existing list via POST~~
 - ~~Add unique URLs for each list~~
