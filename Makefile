@@ -46,7 +46,7 @@ run: $(VENV)
 
 .PHONY: watch
 watch: $(VENV)
-	source ./$(VENV)/bin/activate; ptw --runner "make unit-test" --onfail "terminal-notifier -message 'tests failed'"
+	./$(VENV)/bin/ptw --runner "echo ./$(VENV)/bin/python3 manage.py test" --onfail "terminal-notifier -message 'tests failed'"
 
 .PHONY: migrations
 migrations: $(VENV)
